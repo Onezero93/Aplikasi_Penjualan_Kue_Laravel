@@ -27,7 +27,7 @@ class UserController extends Controller
             'alamat' => 'required|string|max:255',
             'nomortelepon' => 'required|string|max:255',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'status' => 'required|in:admin,karyawan',
+            'status' => 'required|in:admin,pelanggan',
 
 
         ]);
@@ -64,7 +64,7 @@ class UserController extends Controller
             'alamat' => 'required|string|max:255',
             'nomortelepon' => 'required|string|max:255',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'status' => 'required|in:admin,karyawan',
+            'status' => 'required|in:admin,pelanggan',
         ]);
 
         $user->namalengkap = $request->namalengkap;

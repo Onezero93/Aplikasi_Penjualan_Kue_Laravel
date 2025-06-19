@@ -46,8 +46,8 @@
                                     <div class="mb-2">
                                         <label>Kategori</label>
                                         <select name="kategori" class="form-control" required>
-                                            <option value="basah">Basah</option>
-                                            <option value="kering">Kering</option>
+                                            <option value="basah">Kue Basah</option>
+                                            <option value="kering">Kue Kering</option>
                                         </select>
                                     </div>
                                 </div>
@@ -86,9 +86,9 @@
                                     <td>{{ $pr->stok }}</td>
                                     <td>
                                         @if ($pr->kategori == 'basah')
-                                            <span class="badge bg-warning text-white">Basah</span>
+                                            <span class="badge bg-warning text-white">Kue Basah</span>
                                         @else
-                                            <span class="badge" style="background-color: #fc95c4;">Kering</span>
+                                            <span class="badge" style="background-color: #fc95c4;">Kue Kering</span>
                                         @endif
                                     <td>
                                         <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
@@ -147,10 +147,10 @@
                                                                 <select name="kategori" class="form-control" required>
                                                                     <option value="basah"
                                                                         {{ $pr->kategori == 'basah' ? 'selected' : '' }}>
-                                                                        Basah</option>
+                                                                        Kue Basah</option>
                                                                     <option value="kering"
                                                                         {{ $pr->kategori == 'kering' ? 'selected' : '' }}>
-                                                                        Kering</option>
+                                                                        Kue Kering</option>
                                                                 </select>
                                                             </div>
                                                         </div>

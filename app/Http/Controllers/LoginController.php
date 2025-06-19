@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+class LoginController extends Controller
+{
+    //
+    public function showLoginForm()
+    {
+        return view('auth.login'); // Pastikan ada file resources/views/login.blade.php
+    }
+
+    // Proses login
+    public function login(Request $request)
+    {
+        $request->validate([
+            'username' => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
+            $user = Auth::user();
+
+            if ($user->status === 'admin') {
+                return redirect()->route('pengguna.datapengguna');
+            } elseif ($user->status === 'pelanggan') {
+                return redirect()->route('pelanggan.home');
+            } else {
+                Auth::logout();
+                return redirect()->route('auth.login')->with('error', 'Status tidak dikenali.');
+            }
+        }
+
+        return redirect()->route('auth.login')->with('error', 'Username atau password salah.');
+    }
+
+    // Logout
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login')->with('success', 'Berhasil logout.');
+    }
+}

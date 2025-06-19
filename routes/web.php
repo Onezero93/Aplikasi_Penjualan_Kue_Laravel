@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,17 +16,26 @@ use App\Http\Controllers\ProdukController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/datapengguna', [UserController::class, 'tampilData'])->name('pengguna.datapengguna');
-Route::post('/tambahdatapengguna', [UserController::class, 'tambahData'])->name('pengguna.tambah');
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login.proses');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/datapengguna', [UserController::class, 'tampilData'])->name('pengguna.datapengguna');
+    Route::post('/tambahdatapengguna', [UserController::class, 'tambahData'])->name('pengguna.tambah');
 Route::put('/perbaruipengguna/{id_user}', [UserController::class, 'perbaruiData'])->name('pengguna.perbarui');
 Route::delete('/hapuspengguna/{id_user}', [UserController::class, 'hapusData'])->name('pengguna.hapus');
 
 Route::get('/dataproduk', [ProdukController::class, 'tampilProduk'])->name('produk.dataproduk');
 Route::post('/tambahdataproduk', [ProdukController::class, 'tambahProduk'])->name('produk.tambah');
 Route::put('/perbaruiproduk/{id_produk}', [ProdukController::class, 'perbaruiProduk'])->name('produk.perbarui');
-        // Route::get('/detailjasa/{id_jasa}', [JasaController::class, 'detailJasa'])->name('jasa.detail');
 Route::delete('/hapusproduk/{id_produk}', [ProdukController::class, 'hapusProduk'])->name('produk.hapus');
+});
+
+
+//pelanggan
+Route::get('/home', [PelangganController::class, 'tampilProdukPelanggan'])->name('pelanggan.produk');
 
 // Route::get('/', function () {
-//     return view('datapengguna.pengguna');
+//     return view('auth.login');
 // });
