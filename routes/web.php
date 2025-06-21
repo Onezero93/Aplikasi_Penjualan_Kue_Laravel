@@ -5,6 +5,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegistrasiController;
+use App\Http\Controllers\PemesananController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +21,9 @@ use App\Http\Controllers\LoginController;
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.proses');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/register', [RegistrasiController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [RegistrasiController::class, 'registrasi'])->name('register.proses');
+
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/datapengguna', [UserController::class, 'tampilData'])->name('pengguna.datapengguna');
@@ -34,7 +39,14 @@ Route::delete('/hapusproduk/{id_produk}', [ProdukController::class, 'hapusProduk
 
 
 //pelanggan
-Route::get('/home', [PelangganController::class, 'tampilProdukPelanggan'])->name('pelanggan.produk');
+Route::get('/', [PelangganController::class, 'tampilProdukPelanggan'])->name('pelanggan.produk'); // untuk halaman utama
+
+Route::middleware(['auth', 'role:pelanggan'])->group(function () {
+    Route::get('/home', [PelangganController::class, 'tampilProdukPelanggan'])->name('pelanggan.home'); // ⬅ ganti nama route-nya
+    Route::get('/pesan/{id_produk}', [PelangganController::class, 'formPemesanan'])->name('form.pemesanan');
+    Route::post('/pesan/{id_produk}', [PemesananController::class, 'simpan'])->name('pemesanan.simpan');
+
+});
 
 // Route::get('/', function () {
 //     return view('auth.login');

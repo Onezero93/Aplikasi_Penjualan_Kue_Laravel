@@ -44,7 +44,7 @@ class UserController extends Controller
             'username' => $request->username,
             'password' => Hash::make($request->password), // Enkripsi password
             'alamat' => $request->alamat,
-            'nomortelepon' => $request->nomortelepon,
+            'nomortelepon' => '62' . ltrim($request->nomortelepon, '0'),
             'gambar' => $gambarPath,
             'status' => $request->status,
 
@@ -75,7 +75,7 @@ class UserController extends Controller
         }
 
         $user->alamat = $request->alamat;
-        $user->nomortelepon = $request->nomortelepon;
+        $user->nomortelepon = '62' . ltrim($request->nomortelepon, '0');
 
         // Cek jika ada gambar baru diunggah
         if ($request->hasFile('gambar')) {
@@ -113,7 +113,7 @@ class UserController extends Controller
         return redirect()->route('pengguna.datapengguna')->with('success', 'Pengguna berhasil dihapus!');
     }
 
-    
+
     // public function perbaruiProfil(Request $request)
     // {
     //     $user = Auth::user();

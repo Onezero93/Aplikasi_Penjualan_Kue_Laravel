@@ -26,7 +26,7 @@ class LoginController extends Controller
             if ($user->status === 'admin') {
                 return redirect()->route('pengguna.datapengguna');
             } elseif ($user->status === 'pelanggan') {
-                return redirect()->route('pelanggan.home');
+                return redirect()->route('pelanggan.produk');
             } else {
                 Auth::logout();
                 return redirect()->route('auth.login')->with('error', 'Status tidak dikenali.');
@@ -38,8 +38,22 @@ class LoginController extends Controller
 
     // Logout
     public function logout()
-    {
-        Auth::logout();
-        return redirect()->route('login')->with('success', 'Berhasil logout.');
+{
+    // Simpan role sebelum logout
+    $role = Auth::user()->status ?? null;
+
+    Auth::logout();
+
+    // Cek role: jika pelanggan, arahkan ke halaman utama pelanggan
+    if ($role === 'pelanggan') {
+        return redirect()->route('pelanggan.produk'); // ke route '/'
     }
+
+    // Default untuk admin dan lainnya
+    return redirect()->route('login');
+}
+
+
+
+
 }

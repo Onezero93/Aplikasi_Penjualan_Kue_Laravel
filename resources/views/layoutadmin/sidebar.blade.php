@@ -1,15 +1,15 @@
 <div class="text-center mb-4">
     @auth
-        {{-- Foto Pengguna dengan fallback default --}}
         @php
-            $foto = Auth::user()->gambar ?: 'default.png';
+            $foto =
+                Auth::user()->gambar && file_exists(public_path(Auth::user()->gambar))
+                    ? Auth::user()->gambar
+                    : 'fotos/default.png';
         @endphp
-        <img src="{{ asset('images/user/' . $foto) }}"
-             alt="Foto Profil"
-             class="rounded-circle"
-             style="width: 80px; height: 80px; object-fit: cover;">
 
-        {{-- Nama Pengguna --}}
+        <img src="{{ asset($foto) }}" alt="Foto Profil" class="rounded-circle"
+            style="width: 80px; height: 80px; object-fit: cover;">
+
         <div class="mt-2 font-weight-bold">
             {{ Auth::user()->namalengkap }}
         </div>
@@ -18,13 +18,19 @@
         <div class="mt-2 font-weight-bold">Nama Pengguna</div>
     @endauth
 </div>
-
 <a href="index.html" class="mb-2 d-block">Home</a>
 <a href="about.html" class="mb-2 d-block">About</a>
 <a href="services.html" class="mb-2 d-block">Services</a>
 <a href="blog.html" class="mb-2 d-block">Data Order Kue</a>
-<a href="contact.html" class="mb-2 d-block">Data Kue</a>
-<a href="contact.html" class="mb-2 d-block">Data Pengguna</a>
+<a href="{{ route('produk.dataproduk') }}"
+   class="mb-2 d-block {{ request()->routeIs('produk.dataproduk') ? 'active' : '' }}">
+   Data Kue
+</a>
+
+<a href="{{ route('pengguna.datapengguna') }}"
+   class="mb-2 d-block {{ request()->routeIs('pengguna.datapengguna') ? 'active' : '' }}">
+   Data Pengguna
+</a>
 
 {{-- Tombol Logout --}}
 @auth

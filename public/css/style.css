@@ -1087,4 +1087,52 @@ textarea#comment.update_mail::placeholder {
 .pesan-wrapper {
     gap: 8px; /* atau 12px jika masih terlalu mepet */
 }
+.dropdown-menu {
+    min-width: 180px;
+    transform: translateX(-40%);
+}
+
+.form-control {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 16px;
+    box-shadow: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #fc95c4; /* pink highlight */
+    box-shadow: 0 0 0 0.15rem rgba(252, 149, 196, 0.25);
+    outline: none;
+}
+
+.btn-close-custom {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        line-height: 1;
+        color: #000;
+        cursor: pointer;
+    }
+
+    .btn-close-custom:hover {
+        color: #dc3545;
+    }
+
+    .btn-custom-pesan {
+    background-color: #fc95c4;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-custom-pesan:hover {
+    background-color: #b6b4b4; /* warna hover lebih gelap */
+    color: black;
+}
+
 

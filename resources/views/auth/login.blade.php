@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,7 +46,7 @@
                         <div class="text-center mt-3">
                             <small>
                                 Belum punya akun?
-                                <a href="#" class="text-decoration-none">Daftar Sekarang</a>
+                                <a href="{{ route('register') }}" class="text-decoration-none">Daftar Sekarang</a>
                             </small>
                         </div>
                     </div>

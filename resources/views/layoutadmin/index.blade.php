@@ -78,6 +78,13 @@
         .toggle-btn {
             cursor: pointer;
         }
+        .sidebar a.active {
+    background-image: linear-gradient(0deg, #ffffff, #faf0c7 20%);
+    border-radius: 4px;
+    padding-left: 10px;
+    color: black;
+}
+
     </style>
 </head>
 <body>

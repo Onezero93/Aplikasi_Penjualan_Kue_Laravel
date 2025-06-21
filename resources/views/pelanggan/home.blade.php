@@ -24,7 +24,27 @@
                             <a href="#" class="icon-only">
                                 <i class="fas fa-shopping-cart"></i>
                             </a>
-                            <a href="#" class="btn-pesan">Pesan</a>
+                            @guest
+                                {{-- Belum login, arahkan ke login --}}
+                                <a href="{{ route('login') }}" class="btn-pesan">
+                                    <i class=""></i> Pesan
+                                </a>
+                            @else
+                                @if (Auth::user()->status === 'pelanggan')
+                                    {{-- Jika pelanggan login, arahkan ke form pemesanan --}}
+                                    <a href="{{ route('form.pemesanan', $item->id_produk) }}" class="btn-pesan">
+                                        <i class=""></i> Pesan
+                                    </a>
+                                @else
+                                    {{-- Selain pelanggan, nonaktifkan tombol --}}
+                                    <span class="btn-pesan text-muted" style="cursor: not-allowed; opacity: 0.5;">
+                                        <i class=""></i> Pesan
+                                    </span>
+                                @endif
+                            @endguest
+                            {{-- <a href="#" class="icon-only">
+                                <i class="fas fa-shopping-cart"></i>
+                            </a> --}}
                         </div>
                     </div>
                 </div>

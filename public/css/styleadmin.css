@@ -43,7 +43,7 @@ body {
 
 /* Isi form */
 .card-body {
-    padding: 1.5rem;
+    padding: 1rem;
 }
 
 .form-control {
@@ -62,3 +62,52 @@ body {
     background-color: #fa63a9;
     border-color: #fa63a9;
 }
+
+/* === REGISTRASI FORM === */
+
+/* Wrapper Preview Gambar */
+.preview-wrapper {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 2px dashed #ccc;
+    overflow: hidden;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.preview-wrapper:hover {
+    border-color: #fc95c4;
+    transform: scale(1.03);
+}
+
+/* Gambar Preview */
+.preview-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Keterangan klik */
+.preview-text {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+/* Responsif container */
+@media (max-width: 576px) {
+    .card-body {
+        padding: 0.8rem;
+    }
+
+    .preview-wrapper {
+        width: 100px;
+        height: 100px;
+    }
+}
+

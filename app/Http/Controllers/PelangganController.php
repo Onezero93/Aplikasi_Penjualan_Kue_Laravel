@@ -11,5 +11,11 @@ class PelangganController extends Controller
         $produk = Produk::all();
         return view('pelanggan.home', compact('produk'));
     }
+    public function formPemesanan($id_produk)
+{
+    $produk = Produk::findOrFail($id_produk);
+    return view('pelanggan.form_pemesanan', compact('produk'));
+}
+
 
 }
