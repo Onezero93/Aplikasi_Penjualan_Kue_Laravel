@@ -12,50 +12,6 @@ use Illuminate\Support\Facades\Http;
 
 class PemesananController extends Controller
 {
-    //     public function simpan(Request $request, $id_produk)
-    // {
-    //     $request->validate([
-    //         'tanggal_ambil' => 'required|date',
-    //         'jumlah' => 'required|integer|min:1',
-    //         'total_harga' => 'required|integer',
-    //         'metode_pembayaran' => 'required|in:DP,Lunas',
-    //         'jenis_pembayaran' => 'required|in:Transfer,Tunai',
-    //         'nominal_dp' => 'nullable|integer',
-    //         'bukti_transfer' => 'required|file|image|mimes:jpg,jpeg,png|max:2048',
-    //         'alamat' => 'required|string|max:255', // pastikan ini juga divalidasi
-    //     ]);
-
-    //     // ✅ Update alamat user jika berubah
-    //     $user = Auth::user();
-    //     $user->alamat = $request->alamat;
-    //     $user->save();
-
-    //     // Simpan bukti transfer jika metode Transfer
-    //     $buktiTransferPath = null;
-    //     if ($request->hasFile('bukti_transfer')) {
-    //         $buktiTransferPath = $request->file('bukti_transfer')->store('bukti_transfer', 'public');
-    //     }
-
-    //     // Simpan data pemesanan
-    //     Pemesanan::create([
-    //         'user_id' => $user->id_user,
-    //         'produk_id' => $id_produk,
-    //         'tanggal_ambil' => $request->tanggal_ambil,
-    //         'jumlah' => $request->jumlah,
-    //         'total_harga' => $request->total_harga,
-    //         'metode_pembayaran' => $request->metode_pembayaran,
-    //         'jenis_pembayaran' => $request->jenis_pembayaran,
-    //         'nominal_dp' => $request->metode_pembayaran === 'DP' ? $request->nominal_dp : null,
-    //         'sisa_pembayaran' => $request->metode_pembayaran === 'DP'
-    //             ? $request->total_harga - $request->nominal_dp
-    //             : null,
-    //         'bukti_transfer' => $buktiTransferPath,
-    //         'status' => 'pending',
-    //     ]);
-
-    //     return redirect()->route('pelanggan.home')->with('success', 'Pesanan berhasil dikirim!');
-    // }
-
    public function simpan(Request $request, $id_produk)
 {
     $request->validate([
@@ -127,5 +83,37 @@ class PemesananController extends Controller
 
     return redirect()->route('pelanggan.home')->with('success', 'Pesanan berhasil dikirim!');
 }
+
+public function riwayat()
+{
+    $orders = Pemesanan::where('user_id', Auth::id())->latest()->get();
+    return view('pelanggan.riwayatpemesanan', compact('orders'));
+}
+
+public function pelunasan(Request $request, $id)
+{
+    $request->validate([
+        'bukti_pelunasan' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+    ]);
+
+    $pemesanan = Pemesanan::findOrFail($id);
+
+    if ($pemesanan->sisa_pembayaran <= 0) {
+        return back()->with('error', 'Pesanan ini sudah lunas.');
+    }
+
+    // Upload bukti pelunasan
+    $path = $request->file('bukti_pelunasan')->store('bukti_pelunasan', 'public');
+
+    $pemesanan->update([
+        'bukti_pelunasan' => $path,
+        'sisa_pembayaran' => 0,
+        'nominal_dp'=> 0,
+        'metode_pembayaran' => 'Lunas',
+    ]);
+
+    return back()->with('success', 'Pelunasan berhasil dikirim.');
+}
+
 
 }

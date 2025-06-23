@@ -7,6 +7,7 @@ use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\PemesananController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,12 @@ Route::get('/dataproduk', [ProdukController::class, 'tampilProduk'])->name('prod
 Route::post('/tambahdataproduk', [ProdukController::class, 'tambahProduk'])->name('produk.tambah');
 Route::put('/perbaruiproduk/{id_produk}', [ProdukController::class, 'perbaruiProduk'])->name('produk.perbarui');
 Route::delete('/hapusproduk/{id_produk}', [ProdukController::class, 'hapusProduk'])->name('produk.hapus');
+
+Route::get('/dataorder', [OrderController::class, 'tampilanPemesan'])->name('order.datapemesanan');
+Route::put('/order/status/{id}', [OrderController::class, 'updateStatusPemesanan'])->name('order.updateStatus');
+Route::post('/kirimwa/{id}', [OrderController::class, 'kirimWA'])->name('order.kirimwa');
+
+
 });
 
 
@@ -45,6 +52,11 @@ Route::middleware(['auth', 'role:pelanggan'])->group(function () {
     Route::get('/home', [PelangganController::class, 'tampilProdukPelanggan'])->name('pelanggan.home'); // ⬅ ganti nama route-nya
     Route::get('/pesan/{id_produk}', [PelangganController::class, 'formPemesanan'])->name('form.pemesanan');
     Route::post('/pesan/{id_produk}', [PemesananController::class, 'simpan'])->name('pemesanan.simpan');
+    Route::get('/riwayat', [PemesananController::class, 'riwayat'])->name('pelanggan.riwayat')->middleware('auth');
+    Route::post('/pelunasan/upload/{id}', [PemesananController::class, 'pelunasan'])->name('pelunasan.kirim');
+    Route::get('/kategori/{kategori}', [PelangganController::class, 'byKategori'])->name('produk.kategori');
+
+
 
 });
 

@@ -7,10 +7,31 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item active"><a class="nav-link" href="#">Beranda</a></li>
+            <li class="nav-item {{ request()->routeIs('pelanggan.home') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('pelanggan.home') }}">Beranda</a>
+            </li>
             <li class="nav-item"><a class="nav-link" href="#">Tentang Kami</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Kue Kami</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Riwayat</a></li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                    Kue Kami
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <h6 class="dropdown-header">Kategori</h6>
+                    </li>
+                    <li><a class="dropdown-item" href="{{ route('produk.kategori', ['kategori' => 'kering']) }}">🍪 Kue
+                            Kering</a></li>
+                    <li><a class="dropdown-item" href="{{ route('produk.kategori', ['kategori' => 'basah']) }}">🍰 Kue
+                            Basah</a></li>
+                </ul>
+            </li>
+
+
+            <li class="nav-item {{ request()->routeIs('pelanggan.riwayat') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('pelanggan.riwayat') }}">Riwayat</a>
+            </li>
+
+
             <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
         </ul>

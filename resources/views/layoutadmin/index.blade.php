@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         body {
@@ -38,13 +38,13 @@
         .sidebar a {
             display: block;
             padding: 10px 0;
-             color: white;
+            color: white;
             text-decoration: none;
             font-weight: 500;
         }
 
         .sidebar a:hover {
-            background-image: linear-gradient( 0deg, #ffffff , #faf0c7 20%);
+            background-image: linear-gradient(0deg, #ffffff, #faf0c7 20%);
             border-radius: 4px;
             padding-left: 10px;
             color: black;
@@ -78,15 +78,52 @@
         .toggle-btn {
             cursor: pointer;
         }
+
         .sidebar a.active {
-    background-image: linear-gradient(0deg, #ffffff, #faf0c7 20%);
-    border-radius: 4px;
-    padding-left: 10px;
-    color: black;
+            background-image: linear-gradient(0deg, #ffffff, #faf0c7 20%);
+            border-radius: 4px;
+            padding-left: 10px;
+            color: black;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            min-width: 1000px;
+        }
+
+        th {
+            white-space: nowrap;
+        }
+        .form-select-sm.bg-pink {
+            background-color: #fc95c4;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .form-select-sm.bg-success {
+            background-color: #28a745;
+            color: #fff;
+            font-weight: bold;
+        }
+        /* Hilangkan icon select di semua browser umum */
+select.no-arrow {
+    -webkit-appearance: none;  /* Safari & Chrome */
+    -moz-appearance: none;     /* Firefox */
+    appearance: none;          /* Standard */
+    background-image: none !important;
+    padding-right: 0.5rem;     /* Tambahkan padding kanan secukupnya */
+}
+select.text-center {
+    text-align: center;
+    text-align-last: center; /* Untuk browser modern */
 }
 
     </style>
 </head>
+
 <body>
     <input type="checkbox" id="sidebarToggle">
     <nav class="navbar navbar-light bg-light fixed-top d-flex justify-content-between">
@@ -104,7 +141,7 @@
         @yield('content')
     </div>
     <!-- Bootstrap JS (wajib pakai versi bundle) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

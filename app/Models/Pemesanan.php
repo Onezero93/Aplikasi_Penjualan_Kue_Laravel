@@ -23,6 +23,7 @@ class Pemesanan extends Model
         'nominal_dp',
         'sisa_pembayaran',
         'bukti_transfer',
+        'bukti_pelunasan',
         'status',
     ];
 

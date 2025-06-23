@@ -21,15 +21,17 @@
 <a href="index.html" class="mb-2 d-block">Home</a>
 <a href="about.html" class="mb-2 d-block">About</a>
 <a href="services.html" class="mb-2 d-block">Services</a>
-<a href="blog.html" class="mb-2 d-block">Data Order Kue</a>
+<a href="{{ route('order.datapemesanan') }}"
+    class="mb-2 d-block {{ request()->routeIs('order.datapemesanan') ? 'active' : '' }}">
+    Data Order Kue</a>
 <a href="{{ route('produk.dataproduk') }}"
-   class="mb-2 d-block {{ request()->routeIs('produk.dataproduk') ? 'active' : '' }}">
-   Data Kue
+    class="mb-2 d-block {{ request()->routeIs('produk.dataproduk') ? 'active' : '' }}">
+    Data Kue
 </a>
 
 <a href="{{ route('pengguna.datapengguna') }}"
-   class="mb-2 d-block {{ request()->routeIs('pengguna.datapengguna') ? 'active' : '' }}">
-   Data Pengguna
+    class="mb-2 d-block {{ request()->routeIs('pengguna.datapengguna') ? 'active' : '' }}">
+    Data Pengguna
 </a>
 
 {{-- Tombol Logout --}}

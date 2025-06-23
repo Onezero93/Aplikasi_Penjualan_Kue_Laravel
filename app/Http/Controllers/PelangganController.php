@@ -17,5 +17,12 @@ class PelangganController extends Controller
     return view('pelanggan.form_pemesanan', compact('produk'));
 }
 
+public function byKategori($kategori)
+{
+    $produk = Produk::where('kategori', $kategori)->get();
+    return view('pelanggan.kuekami', compact('produk', 'kategori'));
+}
+
+
 
 }
