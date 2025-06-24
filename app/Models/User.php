@@ -49,4 +49,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    // Di User.php
+public function keranjang()
+{
+    return $this->hasMany(Keranjang::class, 'user_id', 'id_user');
+}
+
 }

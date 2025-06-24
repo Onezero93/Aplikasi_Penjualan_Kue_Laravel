@@ -20,7 +20,7 @@
                         <div class="price_text">Rp{{ number_format($item->harga, 0, ',', '.') }}</div>
                         <h6 class="strawberry_text">{{ $item->nama_produk }}</h6>
                         <div class="d-flex justify-content-center align-items-center pesan-wrapper">
-                            <a href="#" class="icon-only">
+                            <a href="{{ route('keranjang.simpan', ['id_produk' => $item->id_produk]) }}" class="icon-only">
                                 <i class="fas fa-shopping-cart"></i>
                             </a>
                             @guest

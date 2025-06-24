@@ -55,6 +55,13 @@ Route::middleware(['auth', 'role:pelanggan'])->group(function () {
     Route::get('/riwayat', [PemesananController::class, 'riwayat'])->name('pelanggan.riwayat')->middleware('auth');
     Route::post('/pelunasan/upload/{id}', [PemesananController::class, 'pelunasan'])->name('pelunasan.kirim');
     Route::get('/kategori/{kategori}', [PelangganController::class, 'byKategori'])->name('produk.kategori');
+    Route::delete('/batalkan/{id}', [PemesananController::class, 'batalkan'])->name('batalkan.pesanan');
+    Route::get('/keranjang/tambah/{id_produk}', [PelangganController::class, 'simpanKeranjang'])->name('keranjang.simpan');
+    Route::get('/keranjang', [PelangganController::class, 'tampilanKeranjang'])->name('keranjang.tampilanproduk');
+    Route::delete('/keranjang/{id_keranjang}/hapus', [PelangganController::class, 'hapusKeranjang'])->name('keranjang.hapus');
+
+
+
 
 
 

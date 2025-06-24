@@ -40,7 +40,7 @@ class RegistrasiController extends Controller
             'username'      => $request->username,
             'password'      => Hash::make($request->password),
             'alamat'        => 'Alamat belum di isi',
-            'nomortelepon'  => $request->nomortelepon,
+            'nomortelepon' => '62' . ltrim($request->nomortelepon, '0'),
             'gambar'        => $gambarPath,
             'status'        => $request->status,
         ]);

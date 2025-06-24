@@ -13,7 +13,7 @@
                         <div class="card shadow-sm border rounded">
                             <div class="row g-0 align-items-center p-3">
                                 <div class="col-md-2 text-center">
-                                    <img src="{{ asset('storage/' . ($order->produk->gambar ?? 'default.png')) }}"
+                                    <img src="{{ asset($order->produk->foto_produk ?? 'https://via.placeholder.com/100') }}"
                                         class="img-fluid rounded" style="max-height: 100px;" alt="Gambar Kue">
                                 </div>
                                 <div class="col-md-7">
@@ -22,17 +22,23 @@
                                         Ambil: {{ $order->tanggal_ambil }}</small>
                                     <div class="mt-2">
                                         <div><strong>Jumlah:</strong> {{ $order->jumlah }}</div>
-                                        <div><strong>Harga Satuan:</strong> Rp {{ number_format($order->produk->harga, 0, ',', '.') }}</div>
-                                        <div><strong>Total:</strong> Rp {{ number_format($order->total_harga, 0, ',', '.') }}</div>
-                                        <div><strong>Metode:</strong> {{ $order->metode_pembayaran }} ({{ $order->jenis_pembayaran }})</div>
+                                        <div><strong>Harga Satuan:</strong> Rp
+                                            {{ number_format($order->produk->harga, 0, ',', '.') }}</div>
+                                        <div><strong>Total:</strong> Rp
+                                            {{ number_format($order->total_harga, 0, ',', '.') }}</div>
+                                        <div><strong>Metode:</strong> {{ $order->metode_pembayaran }}
+                                            ({{ $order->jenis_pembayaran }})</div>
                                         @if ($order->metode_pembayaran == 'DP')
-                                            <div><strong>DP:</strong> Rp {{ number_format($order->nominal_dp, 0, ',', '.') }}</div>
-                                            <div><strong>Sisa:</strong> Rp {{ number_format($order->sisa_pembayaran, 0, ',', '.') }}</div>
+                                            <div><strong>DP:</strong> Rp
+                                                {{ number_format($order->nominal_dp, 0, ',', '.') }}</div>
+                                            <div><strong>Sisa:</strong> Rp
+                                                {{ number_format($order->sisa_pembayaran, 0, ',', '.') }}</div>
                                         @endif
                                     </div>
                                 </div>
                                 <div class="col-md-3 text-end">
-                                    <span class="badge mb-2 {{ $order->status == 'setuju' ? 'bg-success' : ($order->status == 'lunas' ? 'bg-primary' : 'bg-warning text-dark') }}">
+                                    <span
+                                        class="badge mb-2 {{ $order->status == 'setuju' ? 'bg-success' : ($order->status == 'lunas' ? 'bg-primary' : 'bg-warning text-dark') }}">
                                         {{ ucfirst($order->status) }}
                                     </span>
 
@@ -58,7 +64,11 @@
                                         </div>
                                     @endif
                                     {{-- Tombol Upload Pelunasan --}}
-                                    @if ($order->status == 'setuju' && $order->metode_pembayaran == 'DP' && $order->sisa_pembayaran > 0 && !$order->bukti_pelunasan)
+                                    @if (
+                                        $order->status == 'setuju' &&
+                                            $order->metode_pembayaran == 'DP' &&
+                                            $order->sisa_pembayaran > 0 &&
+                                            !$order->bukti_pelunasan)
                                         <button class="btn btn-outline-primary btn-sm mt-2" data-bs-toggle="modal"
                                             data-bs-target="#uploadPelunasanModal{{ $order->id_pemesanan }}">
                                             Upload Pelunasan
@@ -80,10 +90,12 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <p>Silakan unggah bukti pelunasan untuk pesanan:
-                                                            <strong>{{ $order->produk->nama_produk }}</strong></p>
+                                                            <strong>{{ $order->produk->nama_produk }}</strong>
+                                                        </p>
 
                                                         <div class="mb-3">
-                                                            <label for="bukti_pelunasan" class="form-label">Bukti Pelunasan (JPG/PNG)</label>
+                                                            <label for="bukti_pelunasan" class="form-label">Bukti Pelunasan
+                                                                (JPG/PNG)</label>
                                                             <input type="file" class="form-control"
                                                                 name="bukti_pelunasan" required>
                                                         </div>
@@ -94,6 +106,55 @@
                                                 </form>
                                             </div>
                                         </div>
+                                    </div>
+
+                                    {{-- Tombol Aksi Tambahan --}}
+                                    <div class="mt-2">
+                                        {{-- Tombol Pesan Lagi --}}
+                                        <a href="{{ route('form.pemesanan', $order->produk->id_produk) }}"
+                                            class="btn btn-success btn-sm">
+                                            Pesan Lagi
+                                        </a>
+
+                                        {{-- Tombol Batalkan Pesanan (hanya jika belum setuju/lunas) --}}
+                                        @if (in_array($order->status, ['pending']))
+                                            <!-- Tombol trigger modal -->
+                                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#modalBatalkan{{ $order->id_pemesanan }}">
+                                                Batalkan
+                                            </button>
+
+                                            <!-- Modal Konfirmasi Batalkan -->
+                                            <div class="modal fade" id="modalBatalkan{{ $order->id_pemesanan }}"
+                                                tabindex="-1" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <form
+                                                            action="{{ route('batalkan.pesanan', $order->id_pemesanan) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <div class="modal-header bg-danger text-white">
+                                                                <h5 class="modal-title">Konfirmasi Pembatalan</h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Tutup"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>Apakah Anda yakin ingin membatalkan pesanan
+                                                                    <strong>{{ $order->produk->nama_produk }}</strong>?</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Batal</button>
+                                                                <button type="submit" class="btn btn-danger">Ya,
+                                                                    Batalkan</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+
                                     </div>
 
                                 </div>

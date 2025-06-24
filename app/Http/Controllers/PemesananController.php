@@ -81,7 +81,7 @@ class PemesananController extends Controller
         ]);
     }
 
-    return redirect()->route('pelanggan.home')->with('success', 'Pesanan berhasil dikirim!');
+    return redirect()->route('pelanggan.riwayat')->with('success', 'Pesanan berhasil dikirim!');
 }
 
 public function riwayat()
@@ -115,5 +115,17 @@ public function pelunasan(Request $request, $id)
     return back()->with('success', 'Pelunasan berhasil dikirim.');
 }
 
+public function batalkan($id)
+{
+    $pemesanan = Pemesanan::findOrFail($id);
+
+    if (in_array($pemesanan->status, ['lunas', 'setuju'])) {
+        return back()->with('error', 'Pesanan tidak bisa dibatalkan.');
+    }
+
+    $pemesanan->delete();
+
+    return back()->with('success', 'Pesanan berhasil dibatalkan.');
+}
 
 }
