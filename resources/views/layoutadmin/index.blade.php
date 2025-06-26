@@ -11,6 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="{{ asset('images/logoaplikasi.png')}}" type="image/gif" />
 
     <style>
         body {
@@ -29,7 +30,7 @@
             width: 250px;
             min-height: 100vh;
             position: fixed;
-            top: 56px;
+            top: 80px;
             left: 0;
             transition: all 0.3s ease;
             overflow-y: auto;
@@ -130,9 +131,10 @@ select.text-center {
         <label for="sidebarToggle" class="navbar-toggler d-md-none mb-0 toggle-btn">
             <span class="navbar-toggler-icon"></span>
         </label>
-        <a class="navbar-brand" href="#">
-            <img src="images/logo.png" alt="Logo" style="height: 30px;">
-        </a>
+        <a class="navbar-brand ps-5 pe-5" href="#">
+    <img src="{{ asset('images/logoadmin.png') }}" alt="Logo" style="height: 50px;">
+</a>
+
     </nav>
     <div class="sidebar">
         @include('layoutadmin.sidebar')
@@ -142,6 +144,7 @@ select.text-center {
     </div>
     <!-- Bootstrap JS (wajib pakai versi bundle) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </body>
 

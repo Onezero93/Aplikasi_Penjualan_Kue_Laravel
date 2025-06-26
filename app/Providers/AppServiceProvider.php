@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Models\Keranjang;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
+use Carbon\Carbon;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,6 +35,7 @@ class AppServiceProvider extends ServiceProvider
 
         $view->with(compact('jumlahKeranjang', 'items'));
     });
+    Carbon::setLocale('id');
 }
 
 }

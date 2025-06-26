@@ -21,7 +21,7 @@
     <!-- Responsive-->
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
     <!-- fevicon -->
-    <link rel="icon" href="images/fevicon.png" type="image/gif" />
+    <link rel="icon" href="{{ asset('images/logoaplikasi.png')}}" type="image/gif" />
     <!-- font css -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
     <!-- Scrollbar Custom CSS -->
@@ -29,7 +29,6 @@
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 </head>
 
 <body>
@@ -142,6 +141,15 @@
             });
             this.style.display = 'none';
         });
+        function previewFoto(input) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById('previewImage').src = e.target.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
     </script>
 </body>
 

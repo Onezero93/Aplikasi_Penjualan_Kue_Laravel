@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#"><img src="{{ asset('images/logo.png') }}"></a>
+    <a class="navbar-brand"><img src="{{ asset('images/logos.png') }}"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -9,9 +9,9 @@
             <li class="nav-item {{ request()->routeIs('pelanggan.home') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('pelanggan.home') }}">Beranda</a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="#">Tentang Kami</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url('/tentang') }}">Tentang Kami</a></li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
                     Kue Kami
                 </a>
                 <ul class="dropdown-menu">
@@ -112,10 +112,12 @@
                                 style="width: 100%; height: 100%; object-fit: cover; display: block;">
                         </div>
                     </a>
-
                     <div class="dropdown-menu mt-2" style="left: 0;">
                         <span class="dropdown-item-text fw-bold">{{ Auth::user()->namalengkap }}</span>
                         <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalPengaturan">
+                            <i class="fas fa-cog"></i> Pengaturan
+                        </a>
                         <form action="{{ route('logout') }}" method="POST" class="m-0">
                             @csrf
                             <button class="dropdown-item text-danger" type="submit">Logout</button>
@@ -126,3 +128,72 @@
         </div>
     </div>
 </nav>
+<!-- Modal Pengaturan -->
+<div class="modal fade" id="modalPengaturan" tabindex="-1" aria-labelledby="modalPengaturanLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalPengaturanLabel">Pengaturan Akun</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+            </div>
+            <div class="modal-body">
+                @if ($errors->any())
+                    <div class="alert alert-danger py-1 px-2 small">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <form action="{{ route('profil.perbarui') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="mb-3 text-center">
+                        <label for="gambarInput" style="cursor: pointer;">
+                            <img id="previewImage" src="{{ asset(Auth::user()->gambar ?? 'fotos/default.png') }}"
+                                alt="Foto Profil" class="rounded-circle"
+                                style="width: 100px; height: 100px; object-fit: cover; border: 2px solid #ccc;">
+                        </label>
+                        <input type="file" name="gambar" id="gambarInput" class="form-control d-none"
+                            onchange="previewFoto(this)">
+                        <small class="form-text text-muted">Klik gambar untuk mengganti foto</small>
+                    </div>
+                    <div class="mb-3">
+                        <label>Nama Lengkap</label>
+                        <input type="text" name="namalengkap" class="form-control"
+                            value="{{ old('namalengkap', Auth::user()->namalengkap) }}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Username</label>
+                        <input type="text" name="username" class="form-control"
+                            value="{{ old('username', Auth::user()->username) }}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Password (kosongkan jika tidak diubah)</label>
+                        <input type="password" name="password" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Alamat</label>
+                        <input type="text" name="alamat" class="form-control"
+                            value="{{ old('alamat', Auth::user()->alamat) }}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Nomor Telepon</label>
+                        <input type="text" name="nomortelepon" class="form-control"
+                            value="{{ old('nomortelepon', Auth::user()->nomortelepon) }}" required>
+                    </div>
+
+                    <div class="modal-footer px-0">
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

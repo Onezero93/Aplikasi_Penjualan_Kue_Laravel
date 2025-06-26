@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +42,7 @@ Route::get('/dataorder', [OrderController::class, 'tampilanPemesan'])->name('ord
 Route::put('/order/status/{id}', [OrderController::class, 'updateStatusPemesanan'])->name('order.updateStatus');
 Route::post('/kirimwa/{id}', [OrderController::class, 'kirimWA'])->name('order.kirimwa');
 
-
+Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 });
 
 
@@ -59,14 +60,10 @@ Route::middleware(['auth', 'role:pelanggan'])->group(function () {
     Route::get('/keranjang/tambah/{id_produk}', [PelangganController::class, 'simpanKeranjang'])->name('keranjang.simpan');
     Route::get('/keranjang', [PelangganController::class, 'tampilanKeranjang'])->name('keranjang.tampilanproduk');
     Route::delete('/keranjang/{id_keranjang}/hapus', [PelangganController::class, 'hapusKeranjang'])->name('keranjang.hapus');
-
-
-
-
-
-
+    Route::post('/profil/perbarui', [UserController::class, 'perbaruiProfil'])->name('profil.perbarui');
 });
 
-// Route::get('/', function () {
-//     return view('auth.login');
-// });
+Route::get('/tentang', function () {
+    return view('pelanggan.tentang');
+});
+

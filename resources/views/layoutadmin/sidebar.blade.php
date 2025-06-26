@@ -18,9 +18,10 @@
         <div class="mt-2 font-weight-bold">Nama Pengguna</div>
     @endauth
 </div>
-<a href="index.html" class="mb-2 d-block">Home</a>
-<a href="about.html" class="mb-2 d-block">About</a>
-<a href="services.html" class="mb-2 d-block">Services</a>
+{{-- <a href="index.html" class="mb-2 d-block">Home</a>
+<a href="about.html" class="mb-2 d-block">About</a> --}}
+<a href="{{ route('admin.dashboard') }}"
+    class="mb-2 d-block {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">Dashboard</a>
 <a href="{{ route('order.datapemesanan') }}"
     class="mb-2 d-block {{ request()->routeIs('order.datapemesanan') ? 'active' : '' }}">
     Data Order Kue</a>

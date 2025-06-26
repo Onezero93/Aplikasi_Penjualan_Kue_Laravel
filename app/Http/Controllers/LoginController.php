@@ -24,7 +24,7 @@ class LoginController extends Controller
             $user = Auth::user();
 
             if ($user->status === 'admin') {
-                return redirect()->route('pengguna.datapengguna');
+                return redirect()->route('admin.dashboard');
             } elseif ($user->status === 'pelanggan') {
                 return redirect()->route('pelanggan.produk');
             } else {
@@ -52,8 +52,6 @@ class LoginController extends Controller
     // Default untuk admin dan lainnya
     return redirect()->route('login');
 }
-
-
 
 
 }
