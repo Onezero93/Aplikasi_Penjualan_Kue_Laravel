@@ -29,11 +29,11 @@ class LoginController extends Controller
                 return redirect()->route('pelanggan.produk');
             } else {
                 Auth::logout();
-                return redirect()->route('auth.login')->with('error', 'Status tidak dikenali.');
+                return redirect()->route('login')->with('error', 'Status tidak dikenali.');
             }
         }
 
-        return redirect()->route('auth.login')->with('error', 'Username atau password salah.');
+        return redirect()->route('login')->with('error', 'Username atau password salah.');
     }
 
     // Logout

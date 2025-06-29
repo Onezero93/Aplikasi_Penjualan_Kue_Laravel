@@ -39,8 +39,9 @@
 @auth
     <form action="{{ route('logout') }}" method="POST" class="mt-3">
         @csrf
-        <button type="submit" class="btn btn-link text-danger p-0 d-block" style="text-decoration: none;">
+        <button type="submit" class="btn-logout">
             Logout <i class="fa fa-sign-out"></i>
         </button>
     </form>
 @endauth
+

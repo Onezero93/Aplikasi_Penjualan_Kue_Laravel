@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand"><img src="{{ asset('images/logos.png') }}"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -11,10 +11,11 @@
             </li>
             <li class="nav-item"><a class="nav-link" href="{{ url('/tentang') }}">Tentang Kami</a></li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownKue" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
                     Kue Kami
                 </a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownKue">
                     <li>
                         <h6 class="dropdown-header">Kategori</h6>
                     </li>
@@ -129,7 +130,8 @@
     </div>
 </nav>
 <!-- Modal Pengaturan -->
-<div class="modal fade" id="modalPengaturan" tabindex="-1" aria-labelledby="modalPengaturanLabel" aria-hidden="true">
+<div class="modal fade" id="modalPengaturan" tabindex="-1" aria-labelledby="modalPengaturanLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -159,37 +161,35 @@
                             onchange="previewFoto(this)">
                         <small class="form-text text-muted">Klik gambar untuk mengganti foto</small>
                     </div>
-                    <div class="mb-3">
-                        <label>Nama Lengkap</label>
-                        <input type="text" name="namalengkap" class="form-control"
-                            value="{{ old('namalengkap', Auth::user()->namalengkap) }}" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label>Username</label>
-                        <input type="text" name="username" class="form-control"
-                            value="{{ old('username', Auth::user()->username) }}" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label>Password (kosongkan jika tidak diubah)</label>
-                        <input type="password" name="password" class="form-control">
-                    </div>
-
-                    <div class="mb-3">
-                        <label>Alamat</label>
+                    @auth
+                        <div class="mb-3">
+                            <label>Nama Lengkap</label>
+                            <input type="text" name="namalengkap" class="form-control"
+                                value="{{ old('namalengkap', Auth::user()->namalengkap) }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label>Username</label>
+                            <input type="text" name="username" class="form-control"
+                                value="{{ old('username', Auth::user()->username) }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label>Password (kosongkan jika tidak diubah)</label>
+                            <input type="password" name="password" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label>Alamat</label>
                         <input type="text" name="alamat" class="form-control"
-                            value="{{ old('alamat', Auth::user()->alamat) }}" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label>Nomor Telepon</label>
-                        <input type="text" name="nomortelepon" class="form-control"
-                            value="{{ old('nomortelepon', Auth::user()->nomortelepon) }}" required>
-                    </div>
+                            value="{{ old('alamat', Auth::user()->alamat) }}">
+                        </div>
+                        <div class="mb-3">
+                            <label>Nomor Telepon</label>
+                            <input type="text" name="nomortelepon" class="form-control"
+                                value="{{ old('nomortelepon', Auth::user()->nomortelepon) }}" required>
+                        </div>
+                    @endauth
 
                     <div class="modal-footer px-0">
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn-custom-pesan">Simpan</button>
                     </div>
                 </form>
             </div>

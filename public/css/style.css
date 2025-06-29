@@ -1087,9 +1087,12 @@ textarea#comment.update_mail::placeholder {
 .pesan-wrapper {
     gap: 8px; /* atau 12px jika masih terlalu mepet */
 }
-.dropdown-menu {
-    min-width: 180px;
-    transform: translateX(-40%);
+
+ @media (max-width: 991.98px) {
+    .navbar .dropdown-menu {
+        position: static !important;
+        float: none;
+    }
 }
 
 .form-control {
