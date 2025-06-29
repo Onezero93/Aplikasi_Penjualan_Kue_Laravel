@@ -2,8 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h3 class="mb-4">Dashboard Admin</h3>
-
+        <h2 class="mb-4"></h4>
         <div class="row g-3">
             <div class="col-md-3">
                 <div class="card text-white bg-primary">
