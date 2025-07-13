@@ -1,7 +1,7 @@
 @extends('layoutpelanggan.index')
 
 @section('content')
-    <div class="row">
+    <div class="row" id="pesankue">
         <div class="col-12"> <!-- full width -->
             <div class="services_box">
                 <div class="container py-4">
@@ -243,5 +243,16 @@
             toggleDPFields();
             toggleTransferInfo();
         });
+
+        document.addEventListener('DOMContentLoaded', function () {
+        if (sessionStorage.getItem('scrollToProduk')) {
+            const element = document.getElementById('pesankue');
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+            sessionStorage.removeItem('scrollToProduk');
+        }
+    });
     </script>
+
 @endsection

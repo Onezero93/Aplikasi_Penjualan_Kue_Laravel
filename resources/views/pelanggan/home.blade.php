@@ -33,7 +33,7 @@
                             @else
                                 @if (Auth::user()->status === 'pelanggan')
                                     {{-- Jika pelanggan login, arahkan ke form pemesanan --}}
-                                    <a href="{{ route('form.pemesanan', $item->id_produk) }}" class="btn-pesan">
+                                    <a href="{{ route('form.pemesanan', $item->id_produk) }}" onclick="sessionStorage.setItem('scrollToProduk', true)" class="btn-pesan">
                                         <i class=""></i> Pesan
                                     </a>
                                 @else

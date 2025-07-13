@@ -19,14 +19,14 @@
                     <li>
                         <h6 class="dropdown-header">Kategori</h6>
                     </li>
-                    <li><a class="dropdown-item" href="{{ route('produk.kategori', ['kategori' => 'kering']) }}">🍪 Kue
+                    <li><a class="dropdown-item" href="{{ route('produk.kategori', ['kategori' => 'kering']) }}" onclick="sessionStorage.setItem('scrollToKategori', true)">🍪 Kue
                             Kering</a></li>
-                    <li><a class="dropdown-item" href="{{ route('produk.kategori', ['kategori' => 'basah']) }}">🍰 Kue
+                    <li><a class="dropdown-item" href="{{ route('produk.kategori', ['kategori' => 'basah']) }}" onclick="sessionStorage.setItem('scrollToKategori', true)">🍰 Kue
                             Basah</a></li>
                 </ul>
             </li>
             <li class="nav-item {{ request()->routeIs('pelanggan.riwayat') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('pelanggan.riwayat') }}">Riwayat</a>
+                <a class="nav-link" href="{{ route('pelanggan.riwayat') }}" onclick="sessionStorage.setItem('scrollToRiwayat', true)">Riwayat</a>
             </li>
         </ul>
         <div class="d-flex align-items-center ms-auto">
@@ -76,7 +76,7 @@
 
                                     {{-- Tombol Pesan Sekarang --}}
                                     <div class="mt-2">
-                                        <a href="{{ route('form.pemesanan', $item->produk->id_produk) }}"
+                                        <a href="{{ route('form.pemesanan', $item->produk->id_produk) }}" onclick="sessionStorage.setItem('scrollToProduk', true)"
                                             class="btn btn-success btn-sm w-100">Pesan Sekarang</a>
                                     </div>
                                 </li>

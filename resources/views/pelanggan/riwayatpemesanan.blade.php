@@ -1,7 +1,7 @@
 @extends('layoutpelanggan.index')
 
 @section('content')
-    <div class="container py-4">
+    <div class="container py-4" id="riwayatku">
         <h3 class="mb-4 text-center">Riwayat Pemesanan Anda</h3>
 
         @if ($orders->isEmpty())
@@ -165,4 +165,15 @@
             </div>
         @endif
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        if (sessionStorage.getItem('scrollToRiwayat')) {
+            const element = document.getElementById('riwayatku');
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+            sessionStorage.removeItem('scrollToRiwayat');
+        }
+    });
+    </script>
 @endsection

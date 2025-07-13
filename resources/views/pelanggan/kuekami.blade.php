@@ -1,7 +1,7 @@
 @extends('layoutpelanggan.index')
 
 @section('content')
-    <div class="row">
+    <div class="row" id="produk-kategori">
         <div class="col-md-12">
             <h1 class="cream_taital">Kue {{ ucfirst($kategori) }}</h1>
             <p class="cream_text">Berikut adalah pilihan kue {{ strtolower($kategori) }} yang kami sajikan khusus untuk Anda.</p>
@@ -48,4 +48,15 @@
             @endforelse
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        if (sessionStorage.getItem('scrollToKategori')) {
+            const element = document.getElementById('produk-kategori');
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+            sessionStorage.removeItem('scrollToKategori');
+        }
+    });
+    </script>
 @endsection

@@ -21,7 +21,7 @@
     <!-- Responsive-->
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
     <!-- fevicon -->
-    <link rel="icon" href="{{ asset('images/logoaplikasi.png')}}" type="image/gif" />
+    <link rel="icon" href="{{ asset('images/logoaplikasi.png') }}" type="image/gif" />
     <!-- font css -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
     <!-- Scrollbar Custom CSS -->
@@ -43,11 +43,49 @@
                     <ol class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active">01</li>
                         <li data-target="#carouselExampleIndicators" data-slide-to="1">02</li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2">03</li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="3">04</li>
+                        {{-- <li data-target="#carouselExampleIndicators" data-slide-to="2">03</li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="3">04</li> --}}
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
+    <div class="row align-items-center gy-4 text-center text-sm-start">
+        <div class="col-12 col-sm-6">
+            <h1 class="banner_taital">Kue Basah</h1>
+            <p class="banner_text">Kue tradisional dengan tekstur lembut dan rasa manis, cocok untuk berbagai acara.</p>
+            <div class="started_text">
+                <a href="{{ route('produk.kategori', ['kategori' => 'basah']) }}"
+                   onclick="sessionStorage.setItem('scrollToKategori', true)">Lihat Kategori</a>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6">
+            <div class="banner_img">
+                <img src="{{ asset('images/kuebasah.png') }}" alt="Kue Basah"
+                     class="img-fluid w-100" style="max-width: 400px; margin: 0 auto;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="carousel-item">
+    <div class="row align-items-center gy-4 text-center text-sm-start">
+        <div class="col-12 col-sm-6">
+            <h1 class="banner_taital">Kue Kering</h1>
+            <p class="banner_text">Aneka kue kering yang renyah dan nikmat, cocok untuk sajian lebaran atau oleh-oleh.</p>
+            <div class="started_text">
+                <a href="{{ route('produk.kategori', ['kategori' => 'kering']) }}"
+                   onclick="sessionStorage.setItem('scrollToKategori', true)">Lihat Kategori</a>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6">
+            <div class="banner_img">
+                <img src="{{ asset('images/kuekering.png') }}" alt="Kue Kering"
+                     class="img-fluid w-100" style="max-width: 400px; margin: 0 auto;">
+            </div>
+        </div>
+    </div>
+</div>
+
+                        {{-- <div class="carousel-item">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <h1 class="banner_taital">Ice Cream</h1>
@@ -74,35 +112,7 @@
                                     <div class="banner_img"><img src="images/banner-img.png"></div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <h1 class="banner_taital">Ice Cream</h1>
-                                    <p class="banner_text">It is a long established fact that a reader will be
-                                        distracted by the readable content of a page when looking at its layout. The
-                                        point of using Lorem</p>
-                                    <div class="started_text"><a href="#">Order Now</a></div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="banner_img"><img src="images/banner-img.png"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <h1 class="banner_taital">Ice Cream</h1>
-                                    <p class="banner_text">It is a long established fact that a reader will be
-                                        distracted by the readable content of a page when looking at its layout. The
-                                        point of using Lorem</p>
-                                    <div class="started_text"><a href="#">Order Now</a></div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="banner_img"><img src="images/banner-img.png"></div>
-                                </div>
-                            </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -141,15 +151,16 @@
             });
             this.style.display = 'none';
         });
+
         function previewFoto(input) {
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                document.getElementById('previewImage').src = e.target.result;
-            };
-            reader.readAsDataURL(input.files[0]);
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('previewImage').src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
         }
-    }
     </script>
 </body>
 
