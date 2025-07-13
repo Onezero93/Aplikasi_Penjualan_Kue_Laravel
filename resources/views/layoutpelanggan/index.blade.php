@@ -48,42 +48,46 @@
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-    <div class="row align-items-center gy-4 text-center text-sm-start">
-        <div class="col-12 col-sm-6">
-            <h1 class="banner_taital">Kue Basah</h1>
-            <p class="banner_text">Kue tradisional dengan tekstur lembut dan rasa manis, cocok untuk berbagai acara.</p>
-            <div class="started_text">
-                <a href="{{ route('produk.kategori', ['kategori' => 'basah']) }}"
-                   onclick="sessionStorage.setItem('scrollToKategori', true)">Lihat Kategori</a>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6">
-            <div class="banner_img">
-                <img src="{{ asset('images/kuebasah.png') }}" alt="Kue Basah"
-                     class="img-fluid w-100" style="max-width: 400px; margin: 0 auto;">
-            </div>
-        </div>
-    </div>
-</div>
+                            <div class="row align-items-center gy-4 text-center text-sm-start">
+                                <div class="col-12 col-sm-6">
+                                    <h1 class="banner_taital">Kue Basah</h1>
+                                    <p class="banner_text">Kue tradisional dengan tekstur lembut dan rasa manis, cocok
+                                        untuk berbagai acara.</p>
+                                    <div class="started_text">
+                                        <a href="{{ route('produk.kategori', ['kategori' => 'basah']) }}"
+                                            onclick="sessionStorage.setItem('scrollToKategori', true)">Lihat
+                                            Kategori</a>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="banner_img">
+                                        <img src="{{ asset('images/kuebasah.png') }}" alt="Kue Basah"
+                                            class="img-fluid w-100" style="max-width: 400px; margin: 0 auto;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-<div class="carousel-item">
-    <div class="row align-items-center gy-4 text-center text-sm-start">
-        <div class="col-12 col-sm-6">
-            <h1 class="banner_taital">Kue Kering</h1>
-            <p class="banner_text">Aneka kue kering yang renyah dan nikmat, cocok untuk sajian lebaran atau oleh-oleh.</p>
-            <div class="started_text">
-                <a href="{{ route('produk.kategori', ['kategori' => 'kering']) }}"
-                   onclick="sessionStorage.setItem('scrollToKategori', true)">Lihat Kategori</a>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6">
-            <div class="banner_img">
-                <img src="{{ asset('images/kuekering.png') }}" alt="Kue Kering"
-                     class="img-fluid w-100" style="max-width: 400px; margin: 0 auto;">
-            </div>
-        </div>
-    </div>
-</div>
+                        <div class="carousel-item">
+                            <div class="row align-items-center gy-4 text-center text-sm-start">
+                                <div class="col-12 col-sm-6">
+                                    <h1 class="banner_taital">Kue Kering</h1>
+                                    <p class="banner_text">Aneka kue kering yang renyah dan nikmat, cocok untuk sajian
+                                        lebaran atau oleh-oleh.</p>
+                                    <div class="started_text">
+                                        <a href="{{ route('produk.kategori', ['kategori' => 'kering']) }}"
+                                            onclick="sessionStorage.setItem('scrollToKategori', true)">Lihat
+                                            Kategori</a>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="banner_img">
+                                        <img src="{{ asset('images/kuekering.png') }}" alt="Kue Kering"
+                                            class="img-fluid w-100" style="max-width: 400px; margin: 0 auto;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         {{-- <div class="carousel-item">
                             <div class="row">
