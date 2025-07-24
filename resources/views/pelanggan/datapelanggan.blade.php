@@ -143,7 +143,7 @@
                                                         @if ($order->bukti_transfer)
                                                             <p class="text-center mt-3"><strong>Bukti Transfer</strong></p>
                                                             <div class="text-center">
-                                                                <img src="{{ asset('storage/' . $order->bukti_transfer) }}"
+                                                                <img src="{{ asset($order->bukti_transfer) }}"
                                                                     class="img-fluid rounded" alt="Bukti Transfer"
                                                                     style="max-width: 300px;">
                                                             </div>
@@ -151,7 +151,7 @@
                                                         @if ($order->bukti_pelunasan)
                                                             <p class="text-center mt-3"><strong>Bukti Pelunasan</strong></p>
                                                             <div class="text-center">
-                                                                <img src="{{ asset('storage/' . $order->bukti_pelunasan) }}"
+                                                                <img src="{{ asset($order->bukti_pelunasan) }}"
                                                                     class="img-fluid rounded" alt="Bukti Pelunasan"
                                                                     style="max-width: 300px;">
                                                             </div>

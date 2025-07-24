@@ -46,23 +46,27 @@
                                     @if ($order->bukti_transfer)
                                         <div class="mt-2">
                                             <p class="mb-1"><strong>Bukti Transfer:</strong></p>
-                                            <a href="{{ asset('storage/' . $order->bukti_transfer) }}" target="_blank">
-                                                <img src="{{ asset('storage/' . $order->bukti_transfer) }}"
+                                            <a href="{{ asset( $order->bukti_transfer) }}" target="_blank">
+                                                <img src="{{ asset($order->bukti_transfer) }}"
                                                     class="img-thumbnail" style="max-width: 100px;" alt="Bukti Transfer">
                                             </a>
+                                            {{-- <a href="{{ asset('storage/' . $order->bukti_pelunasan) }}" target="_blank">
+                                                <img src="{{ asset('storage/' . $order->bukti_pelunasan) }}"
+                                                    class="img-thumbnail" style="max-width: 100px;" alt="Bukti Pelunasan">
+                                            </a> --}}
                                         </div>
                                     @endif
 
                                     {{-- Bukti Pelunasan --}}
                                     @if ($order->bukti_pelunasan)
-                                        <div class="mt-2">
-                                            <p class="mb-1"><strong>Bukti Pelunasan:</strong></p>
-                                            <a href="{{ asset('storage/' . $order->bukti_pelunasan) }}" target="_blank">
-                                                <img src="{{ asset('storage/' . $order->bukti_pelunasan) }}"
-                                                    class="img-thumbnail" style="max-width: 100px;" alt="Bukti Pelunasan">
-                                            </a>
-                                        </div>
-                                    @endif
+    <div class="mt-2">
+        <p class="mb-1"><strong>Bukti Pelunasan:</strong></p>
+        <a href="{{ asset($order->bukti_pelunasan) }}" target="_blank">
+            <img src="{{ asset($order->bukti_pelunasan) }}" class="img-thumbnail" style="max-width: 100px;" alt="Bukti Pelunasan">
+        </a>
+    </div>
+@endif
+
                                     {{-- Tombol Upload Pelunasan --}}
                                     @if (
                                         $order->status == 'setuju' &&
